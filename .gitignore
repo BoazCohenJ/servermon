@@ -7,3 +7,5 @@ config/
 server/data/
 __pycache__/
 *.pyc
+android/
+ios/
