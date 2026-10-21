@@ -1,0 +1,9 @@
+node_modules/
+.expo/
+dist/
+*.tar.gz
+.env
+config/
+server/data/
+__pycache__/
+*.pyc

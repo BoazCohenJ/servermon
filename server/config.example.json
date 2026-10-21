@@ -1,0 +1,14 @@
+{
+  "services": ["ssh", "nginx"],
+  "docker": true,
+  "history_days": 180,
+  "thresholds": {
+    "fs_warn_pct": 85,
+    "fs_crit_pct": 95,
+    "temp_warn_c": 50,
+    "temp_crit_c": 60,
+    "load_warn_per_core": 1.5,
+    "mem_warn_pct": 90
+  },
+  "ntfy": { "url": "https://ntfy.sh", "topic": "", "token": "" }
+}

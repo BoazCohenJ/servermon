@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "ServerMon",
+    "slug": "servermon",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": { "supportsTablet": true, "bundleIdentifier": "app.servermon" },
+    "android": { "package": "app.servermon", "usesCleartextTraffic": true },
+    "plugins": ["expo-secure-store"]
+  }
+}

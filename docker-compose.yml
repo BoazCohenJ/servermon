@@ -1,0 +1,37 @@
+# ServerMon: collector + API in one container.
+#
+#   1. cp .env.example .env   and set SERVERMON_TOKEN  (openssl rand -hex 24)
+#   2. cp server/config.example.json config/config.json   and edit
+#   3. docker compose up -d --build
+#
+# Try it without touching real hardware:  SERVERMON_MOCK=1 docker compose up --build
+services:
+  servermon:
+    build: ./server
+    container_name: servermon
+    restart: unless-stopped
+
+    # Needed so the container sees the host's CPU/memory/network, mounts and systemd,
+    # and can talk to the disks for SMART.
+    network_mode: host
+    pid: host
+    privileged: true
+    # Tighter alternative to `privileged`: drop it, add
+    #   cap_add: [SYS_RAWIO, SYS_ADMIN, SYS_PTRACE]
+    #   devices: ["/dev/sda", "/dev/sdb", "/dev/nvme0"]
+    # (nsenter into host systemd needs SYS_ADMIN + SYS_PTRACE; some distros also want it privileged.)
+
+    environment:
+      SERVERMON_TOKEN: ${SERVERMON_TOKEN:?set SERVERMON_TOKEN in .env}
+      SERVERMON_PORT: ${SERVERMON_PORT:-8787}
+      SERVERMON_INTERVAL: ${SERVERMON_INTERVAL:-300}
+      SERVERMON_MOCK: ${SERVERMON_MOCK:-0}
+      SERVERMON_HOST_ROOT: /host
+    volumes:
+      - servermon-data:/data
+      - ./config:/config:ro
+      - /:/host:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  servermon-data:
