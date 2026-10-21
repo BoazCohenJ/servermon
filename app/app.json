@@ -2,7 +2,7 @@
   "expo": {
     "name": "ServerMon",
     "slug": "servermon",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -11,7 +11,12 @@
       "bundleIdentifier": "app.servermon"
     },
     "android": {
-      "package": "app.servermon"
+      "package": "app.servermon",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "monochromeImage": "./assets/monochrome-icon.png",
+        "backgroundColor": "#2459d6"
+      }
     },
     "plugins": [
       "expo-secure-store",
@@ -29,6 +34,10 @@
         "projectId": "a2367183-77aa-48cc-a6a5-863bce126c32"
       }
     },
-    "owner": "boazcohen"
+    "owner": "boazcohen",
+    "icon": "./assets/icon.png",
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

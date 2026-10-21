@@ -445,12 +445,15 @@ def trim_history(path, days):
             f.writelines(keep)
 
 
+DEFAULT_ICON = "https://raw.githubusercontent.com/BoazCohenJ/servermon/main/assets/icon-256.png"
+
+
 def notify(cfg, title, body, priority="default"):
     n = cfg["ntfy"]
     if not (n.get("url") and n.get("topic")):
         return
     req = urllib.request.Request(f"{n['url'].rstrip('/')}/{n['topic']}", data=body.encode(),
-                                 headers={"Title": title, "Priority": priority})
+                                 headers={"Title": title, "Priority": priority, "Icon": n.get("icon") or DEFAULT_ICON})
     if n.get("token"):
         req.add_header("Authorization", f"Bearer {n['token']}")
     try:
