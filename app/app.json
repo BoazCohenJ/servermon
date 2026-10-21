@@ -6,8 +6,29 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "ios": { "supportsTablet": true, "bundleIdentifier": "app.servermon" },
-    "android": { "package": "app.servermon", "usesCleartextTraffic": true },
-    "plugins": ["expo-secure-store"]
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.servermon"
+    },
+    "android": {
+      "package": "app.servermon"
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a2367183-77aa-48cc-a6a5-863bce126c32"
+      }
+    },
+    "owner": "boazcohen"
   }
 }
