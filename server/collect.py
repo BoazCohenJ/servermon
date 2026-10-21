@@ -271,7 +271,14 @@ def smart_disks(cfg, last_realloc):
         try:
             data = json.loads(o)
         except ValueError:
-            continue
+            data = {}
+        if not data.get("model_name") and d.get("type") == "scsi":
+            # SATA drives behind a SAT layer are often scanned as plain scsi
+            _, o = run(["smartctl", "-a", "-j", "-d", "sat", d["name"]], timeout=60)
+            try:
+                data = json.loads(o)
+            except ValueError:
+                data = {}
         if not data.get("model_name"):
             continue
         rec = parse_smart(data, cfg)
