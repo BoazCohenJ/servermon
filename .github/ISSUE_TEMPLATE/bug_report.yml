@@ -1,0 +1,61 @@
+name: Bug report
+description: "Something in ServerMon doesn't work the way it should"
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time. Even a short report helps, and nothing here is too small.
+  - type: textarea
+    id: what
+    attributes:
+      label: "What happened?"
+      description: "What did you do, what did you expect, and what happened instead?"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to reproduce"
+      placeholder: |
+        1. Open the Disks tab
+        2. ...
+  - type: input
+    id: version
+    attributes:
+      label: "ServerMon version"
+      description: "The release you downloaded"
+      placeholder: "1.1.2"
+    validations:
+      required: true
+  - type: dropdown
+    id: part
+    attributes:
+      label: "Which part?"
+      options:
+        - "Server container"
+        - "App"
+        - "Both / not sure"
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: "Server OS and Docker version"
+      description: "From `cat /etc/os-release` and `docker --version`"
+      placeholder: "Ubuntu 24.04, Docker 27.3"
+  - type: input
+    id: app
+    attributes:
+      label: "App platform"
+      placeholder: "Android 15 (EAS build) / iOS 18 (Expo Go)"
+  - type: textarea
+    id: container-log
+    attributes:
+      label: "Container log"
+      description: "Output of `docker compose logs --tail 100`. Remove hostnames, IP addresses and tokens."
+      render: text
+  - type: textarea
+    id: extra
+    attributes:
+      label: "Anything else"
+      description: "Screenshots are very welcome. Please remove server addresses and tokens first."
